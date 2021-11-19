@@ -27,16 +27,16 @@ void BuscaMinas::jugar() {
 		int y = yValue();
 		
 		if(opcion == 1) {
-			cout << "opcion 1"<<endl;
-			int bombitas = tableroBombas->calcularBombas(y,x);
 			flag = tableroBombas->destaparCasilla(y,x);
-			cout<< bombitas << endl;
+			tableroBombas->imprimir();
+			tableroBombas->imprimirBombas();
 		} else if(opcion == 2) {
 			tableroBombas->marcarCasilla(y,x);
 			tableroBombas->imprimir();
 			tableroBombas->imprimirBombas();
 		} 
-	}
+	} 
+	cout<<"BOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOM!!!!!! Y VOLO.\nMURIO POR UNA BOMBA ENTRE TERRIBLES SUFRIMIENTOS\n\n";
 }
 int BuscaMinas::xValue() {
 	int opcion = 0;

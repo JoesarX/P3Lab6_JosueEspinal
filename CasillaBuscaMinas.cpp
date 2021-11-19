@@ -13,6 +13,9 @@ char CasillaBuscaMinas::getDisplay(){
 bool CasillaBuscaMinas::getEsBomba(){
 	return this->esBomba;
 }
+bool CasillaBuscaMinas::getDescubierta(){
+	return this->descubierta;
+}
 bool CasillaBuscaMinas::getMarcada(){
 	return this->marcada;
 }
@@ -24,6 +27,9 @@ void CasillaBuscaMinas::setEsBomba(bool bomba){
 }
 void CasillaBuscaMinas::setMarcada(bool marca){
 	this->marcada = marca;
+}
+void CasillaBuscaMinas::setDescubierta(bool d){
+	this->descubierta = d;
 }
 
 CasillaBuscaMinas::~CasillaBuscaMinas(){

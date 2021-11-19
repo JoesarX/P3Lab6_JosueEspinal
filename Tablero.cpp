@@ -67,6 +67,7 @@ int Tablero::getSize() {
 }
 int Tablero::calcularBombas(int x,int y) {
 	int contador = 0;
+
 	if(x>0) {
 		if(tablero[x-1][y]->getEsBomba() == true) {
 			contador++;
@@ -97,18 +98,69 @@ int Tablero::calcularBombas(int x,int y) {
 			}
 		}
 	}
-	if(y>0){
+	if(y>0) {
 		if(tablero[x][y-1]->getEsBomba() == true) {
 			contador++;
 		}
 	}
-	if(y<size-1){
+	if(y<size-1) {
 		if(tablero[x][y+1]->getEsBomba() == true) {
 			contador++;
 		}
 	}
 	return contador;
-	
+
+}
+
+bool Tablero::destaparCasilla(int x,int y) {
+	bool bomba = true;
+	if(tablero[x][y]->getEsBomba() == true) {
+		bomba = false;
+	} else {
+		tablero[x][y]->setDisplay(48+calcularBombas(x,y));
+		tablero[x][y]->setDescubierta(true);
+		if(x>0) {
+			if(tablero[x-1][y]->getEsBomba()==false && tablero[x-1][y]->getDescubierta() == false) {
+				destaparCasilla(x-1,y);
+			}
+			/*if(y>0) {
+				if(tablero[x-1][y-1]->getEsBomba()==false && tablero[x-1][y-1]->getDescubierta() == false) {
+					destaparCasilla(x-1,y-1);
+				}
+			}
+			if(y<size-1) {
+				if(tablero[x-1][y+1]->getEsBomba() == false && tablero[x-1][y+1]->getDescubierta() == false) {
+					destaparCasilla(x-1,y+1);
+				}
+			}*/
+		}
+		if(x<size-1) {
+			if(tablero[x+1][y]->getEsBomba() == false && tablero[x+1][y]->getDescubierta() == false) {
+				destaparCasilla(x+1,y);
+			}
+			/*if(y>0) {
+				if(tablero[x+1][y-1]->getEsBomba() == false && tablero[x+1][y-1]->getDescubierta() == false) {
+					destaparCasilla(x+1,y-1);
+				}
+			}
+			if(y<size-1) {
+				if(tablero[x+1][y+1]->getEsBomba() == false && tablero[x+1][y+1]->getDescubierta() == false) {
+					destaparCasilla(x+1,y+1);
+				}
+			}*/
+		}
+		if(y>0) {
+			if(tablero[x][y-1]->getEsBomba() == false && tablero[x][y-1]->getDescubierta() == false) {
+				destaparCasilla(x,y-1);
+			}
+		}
+		if(y<size-1) {
+			if(tablero[x][y+1]->getEsBomba() == false && tablero[x][y+1]->getDescubierta() == false) {
+				destaparCasilla(x,y+1);
+			}
+		}
+	}
+	return bomba;
 }
 
 void Tablero::marcarCasilla(int x,int y) {

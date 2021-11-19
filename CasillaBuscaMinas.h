@@ -9,6 +9,8 @@ class CasillaBuscaMinas
 		char getDisplay();
 		bool getEsBomba();
 		bool getMarcada();
+		bool getDescubierta();
+		void setDescubierta(bool);
 		void setEsBomba(bool);
 		void setDisplay(char);
 		void setMarcada(bool);
