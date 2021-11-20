@@ -1,7 +1,8 @@
 #include "Tablero.h"
 
 Tablero::Tablero(int level) {
-
+	vacio = 0;
+	objetivo = 0;
 	switch(level) {
 		case 1: {
 			this->tablero = new CasillaBuscaMinas**[8];
@@ -43,10 +44,13 @@ void Tablero::llenarBombas(int level) {
 	int bombas = 0;
 	if(level == 1) {
 		bombas = 12;
+		objetivo = 64-12;
 	} else if(level == 2) {
 		bombas = 25;
+		objetivo = 100-25;
 	} else {
 		bombas = 43;
+		objetivo = 144-43;
 	}
 	int contador = 0;
 	while(contador < bombas) {
@@ -64,6 +68,12 @@ void Tablero::setSize(int level) {
 }
 int Tablero::getSize() {
 	return this->size;
+}
+int Tablero::getObjetivo() {
+	return this->objetivo;
+}
+int Tablero::getVacio() {
+	return this->vacio;
 }
 int Tablero::calcularBombas(int x,int y) {
 	int contador = 0;
@@ -119,6 +129,7 @@ bool Tablero::destaparCasilla(int x,int y) {
 	} else {
 		tablero[x][y]->setDisplay(48+calcularBombas(x,y));
 		tablero[x][y]->setDescubierta(true);
+		vacio++;
 		if(x>0) {
 			if(tablero[x-1][y]->getEsBomba()==false && tablero[x-1][y]->getDescubierta() == false) {
 				destaparCasilla(x-1,y);

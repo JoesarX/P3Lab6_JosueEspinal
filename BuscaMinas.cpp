@@ -8,6 +8,7 @@ BuscaMinas::BuscaMinas(int level) {
 }
 void BuscaMinas::jugar() {
 	bool flag = true;
+	bool gano = false;
 	bool flag2 = true;
 	while(flag) {
 
@@ -30,17 +31,28 @@ void BuscaMinas::jugar() {
 			flag = tableroBombas->destaparCasilla(y,x);
 			tableroBombas->imprimir();
 			tableroBombas->imprimirBombas();
+			
+			if(tableroBombas->getObjetivo() == tableroBombas->getVacio()){
+				gano = true;
+				flag = false;
+			}
 		} else if(opcion == 2) {
 			tableroBombas->marcarCasilla(y,x);
 			tableroBombas->imprimir();
 			tableroBombas->imprimirBombas();
+			
 		} 
 	} 
-	cout<<"BOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOM!!!!!! Y VOLO.\nMURIO POR UNA BOMBA ENTRE TERRIBLES SUFRIMIENTOS\n\n";
+	if(gano){
+		cout<<"BUENISIMA.\nUSTED A GANADO, MENUDO ASTRO\n\n";
+	}else{
+		cout<<"BOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOM!!!!!! Y VOLO.\nMURIO POR UNA BOMBA ENTRE TERRIBLES SUFRIMIENTOS\n\n";
+	}
+	
 }
 int BuscaMinas::xValue() {
 	int opcion = 0;
-	cout << "DECIDA EN QUE CASILLA ACTUARA:" << endl <<"Cordenada x: " ;
+	cout << "\nDECIDA EN QUE CASILLA ACTUARA:" << endl <<"Cordenada x: " ;
 	cin >> opcion;
 	bool flag = false;
 	if(opcion >= 0 && opcion<(tableroBombas->getSize())) {

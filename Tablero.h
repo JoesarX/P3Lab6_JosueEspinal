@@ -20,10 +20,14 @@ class Tablero
 		void rellenarTablero();
 		void setSize(int);
 		int getSize();
+		int getObjetivo();
+		int getVacio();
 		void llenarBombas(int);
 	private:
 		CasillaBuscaMinas*** tablero;
 		int size;
+		int objetivo;
+		int vacio;
 		
 	protected:
 		
